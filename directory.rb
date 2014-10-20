@@ -17,3 +17,6 @@ puts "Luke Murphy"
 puts "Nicky Ajose"
 puts "Billy Sharp"
 puts "Souleymane Doukara"
+print "Overall we have "
+print 17
+puts " great students"
