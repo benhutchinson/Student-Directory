@@ -8,35 +8,41 @@ def input_students
 	# get the first name
 	name = gets.chomp
 
+	while !name.empty?
+	
 	print "What month are you joining Makers?\n"
 	# defining the cohort
 	cohort = gets.chomp
 	if cohort.empty? 
-		cohort = :default
-		else
-		cohort
+	cohort = :undecided
+	else
+	cohort
 	end
-	
 
-	print "Please enter the country of origin\n"
-	# add the country of origin
-	country = gets.chomp
+	puts "You are #{name} in the #{cohort} cohort."
+	puts "If you are happy, type YES."
+	puts "If you prefer to re-submit, type NO"
 
-	print "Any hobbies?\n"
-	# check for hobbies
-	hobbies = gets.chomp
+	happy = gets.chomp
 
-	# while the name is not empty, repeat this code
+	if happy.upcase == "YES"
 
-	while !name.empty? do
-		# add the student hash to the array
-		students << {:name => name, :cohort => cohort.to_sym, :country => country, :hobbies => hobbies}
-		print "Now we have #{students.length} students\n"
-		# get another name from the user
-		name = gets.chomp
+	students << {:name => name, :cohort => cohort.to_sym}
+	puts "Please enter the name of the next student:"
+	name = gets.chomp
+
+	else
+	puts "Please start over.  What's your name?"
+	name = gets.chomp
+
 	end
+
+	end
+
+	print "Now we have #{students.length} students\n"
 	# return the array of students
 	students
+
 end
 
 def print_header
@@ -48,7 +54,7 @@ end
 
 def list(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort from #{student[:country]} who likes #{student[:hobbies]})".center(60)
+    puts "#{student[:name]} (#{student[:cohort]})".center(60)
   end
 end
 
