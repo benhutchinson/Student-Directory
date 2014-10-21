@@ -31,13 +31,14 @@ def input_students
 end
 
 def print_header
-	print "The students of my cohort at Makers Academy\n"
-	print "-------------------\n"
+	puts "The students of my cohort at Makers Academy".center(60, "-")
+	puts "-------------------".center(60, "/")
+	puts ""
 end
 
 def list(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort from #{student[:country]} who likes #{student[:hobbies]})"
+    puts "#{student[:name]} (#{student[:cohort]} cohort from #{student[:country]} who likes #{student[:hobbies]})".center(60, "-")
   end
 end
 
