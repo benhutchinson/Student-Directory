@@ -26,14 +26,14 @@ def print_header
 end
 
 def list(students)
-	student_filter = students.select do |student| student[:name][0].upcase.include? "A" end
-	filter = student_filter.each_with_index do |student, index| 
+	student_filter = students.select do |student| student[:name].length < 12 end
+	student_filter.each_with_index do |student, index| 
 		print "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort}\n"
 	end
 end
 
 def print_footer(filter)
-	print "Overall we have #{filter.length} great students whose name begins with 'A'\n"
+	print "Overall we have #{filter.length} great students whose name is less than 12 characters\n"
 end
 
 students = input_students
