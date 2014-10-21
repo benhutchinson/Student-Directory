@@ -8,10 +8,20 @@ def input_students
 	# get the first name
 	name = gets.chomp
 
+	print "Please enter the country of origin\n"
+
+	# add the country of origin
+	country = gets.chomp
+
+	print "Any hobbies?\n"
+
+	# add the country of origin
+	hobbies = gets.chomp
+
 	# while the name is not empty, repeat this code
 	while !name.empty? do
 		# add the student hash to the array
-		students << {:name => name, :cohort => :november}
+		students << {:name => name, :cohort => :november, :country => country, :hobbies => hobbies}
 		print "Now we have #{students.length} students\n"
 		# get another name from the user
 		name = gets.chomp
@@ -26,17 +36,16 @@ def print_header
 end
 
 def list(students)
-	student_filter = students.select do |student| student[:name].length < 12 end
-	student_filter.each_with_index do |student, index| 
-		print "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort}\n"
-	end
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort from #{student[:country]} who likes #{student[:hobbies]})"
+  end
 end
 
-def print_footer(filter)
-	print "Overall we have #{filter.length} great students whose name is less than 12 characters\n"
+def print_footer(students)
+	print "Overall we have #{students.length} great students\n"
 end
 
 students = input_students
 print_header
-filter = list(students)
-print_footer(filter)
+list(students)
+print_footer(students)
