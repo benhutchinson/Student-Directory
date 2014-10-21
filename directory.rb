@@ -11,12 +11,12 @@ def input_students
 	print "What month are you joining Makers?\n"
 	# defining the cohort
 	cohort = gets.chomp
-
-	if cohort.length == 0
+	if cohort.empty? 
 		cohort = :default
-	else
-		cohort.to_sym
+		else
+		cohort
 	end
+	
 
 	print "Please enter the country of origin\n"
 	# add the country of origin
