@@ -26,16 +26,17 @@ def print_header
 end
 
 def list(students)
-	students.each_with_index do |student, index| 
+	student_filter = students.select do |student| student[:name][0].upcase.include? "A" end
+	filter = student_filter.each_with_index do |student, index| 
 		print "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort}\n"
 	end
 end
 
-def print_footer(students)
-	print "Overall we have #{students.length} great students\n"
+def print_footer(filter)
+	print "Overall we have #{filter.length} great students whose name begins with 'A'\n"
 end
 
 students = input_students
 print_header
-list(students)
-print_footer(students)
+filter = list(students)
+print_footer(filter)
