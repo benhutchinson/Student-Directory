@@ -33,6 +33,10 @@ def input_students
 end
 
 students = input_students
+if students.length > 0
 print_header
 print(students)
 print_footer(students)
+else
+  puts "Sorry to see you go, goodbye."
+end
