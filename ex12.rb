@@ -1,3 +1,5 @@
+puts "The currently executed file is: " + __FILE__
+
 @students = []
 
 def print_header
