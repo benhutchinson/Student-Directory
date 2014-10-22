@@ -1,6 +1,7 @@
 puts "The currently executed file is: " + __FILE__
 
 @students = []
+@chosen_file
 
 def print_header
   puts "The students of my cohort at Makers Academy"
@@ -36,8 +37,8 @@ end
 def print_menu
     puts "1. Input the students"
     puts "2. Show the students"
-    puts "3. Save the list to students.csv"
-    puts "4. Load the list from students.csv"
+    puts "3. Save the list"
+    puts "4. Load a list"
     puts "9. Exit"
 end
 
@@ -58,9 +59,11 @@ def process(selection)
       show_students
 
       when "3"
+      what_file
       save_students
-
+      
       when "4"
+      what_file
       load_students
 
       when "9"
@@ -80,17 +83,23 @@ def interactive_menu
   end
 end
 
+def what_file
+  puts "What file shall we use?"
+  @chosen_file = gets.chomp
+end
+
+
 
 def save_students
   # open a file for writing 
-  file = File.open("students.csv", "w")
+  file = File.open(@chosen_file, "w") do |file|
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+end
 end
 
 
@@ -99,7 +108,7 @@ def add_student(name, cohort)
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r") do |file|  
+  file = File.open(@chosen_file, "r") do |file|  
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     add_student(name, cohort)
