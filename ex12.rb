@@ -99,12 +99,12 @@ def add_student(name, cohort)
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+  file = File.open(filename, "r") do |file|  
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     add_student(name, cohort)
   end
-  file.close
+  end # file is automatically closed given the do end block completes here
 end
 
 
