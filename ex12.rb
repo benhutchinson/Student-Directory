@@ -32,11 +32,34 @@ def input_students
   students
 end
 
-students = input_students
-if students.length > 0
-print_header
-print(students)
-print_footer(students)
-else
-  puts "Sorry to see you go, goodbye."
+
+def interactive_menu
+  students = []
+  loop do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+
+    selection = gets.chomp
+
+    case selection
+    when "1"
+      # input the students
+      students = input_students
+
+    when "2"
+      # show the students
+      print_header
+      print(students)
+      print_footer(students)
+    when "9"
+      exit # this causes the program to terminates
+    else
+      puts "I don't know what you meant, try again."
+    end
+  end
 end
+
+
+
+interactive_menu
