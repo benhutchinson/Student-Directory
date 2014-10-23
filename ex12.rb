@@ -115,7 +115,7 @@ def load_students(filename = "students.csv")
   end
 end
 
-
+# to extend, might adjust this to check if a .csv file inputted.
 
 def try_load_students
   filename = ARGV.first # first argument from the command line
