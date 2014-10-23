@@ -1,3 +1,5 @@
+require 'csv'
+
 puts "The currently executed file is: " + __FILE__
 
 @students = []
@@ -91,15 +93,13 @@ end
 
 
 def save_students
-  # open a file for writing 
-  file = File.open(@chosen_file, "w") do |file|
-  # iterate over the array of students
-  @students.each do |student|
+
+  CSV.open(@chosen_file, "a") { |csv| 
+    @students.each do |student|
     student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
-  end
-end
+    csv << student_data
+    end
+}
 end
 
 
@@ -108,12 +108,11 @@ def add_student(name, cohort)
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(@chosen_file, "r") do |file|  
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    add_student(name, cohort)
+
+  CSV.foreach(@chosen_file) do |line| 
+  name, cohort = "#{line[0]},#{line[1]}".chomp.split(',')
+  add_student(name, cohort)
   end
-  end # file is automatically closed given the do end block completes here
 end
 
 
